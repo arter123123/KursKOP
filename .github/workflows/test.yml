@@ -13,6 +13,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "requirements.txt not found, skipping installation of dependencies..."
+          fi
       - name: Run tests
         run: python -m unittest discover
